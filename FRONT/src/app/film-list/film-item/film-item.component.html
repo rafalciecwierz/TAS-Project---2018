@@ -1,0 +1,10 @@
+<div class="col-sm-2">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <img src="{{ movie.imagePath}}" class="img-responsive" alt="Film Sth">
+    </div>
+    <a style="cursor:pointer" routerLink="/movie/{{index}}">
+      <div class="panel-footer">{{ movie.title }} ({{ movie.year }})</div>
+    </a>
+  </div>
+</div>

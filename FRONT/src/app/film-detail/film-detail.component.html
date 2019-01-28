@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-6">
+    <button type="button" class="btn btn-primary">Add this movie to the cart</button>
+    <hr>
+    <h3>{{movie.title}} - {{movie.year}}</h3>
+    <hr>
+    <h4> {{movie.description}}</h4>
+    <hr>
+    <p>Number in stock: {{movie.numberInStock}}</p>
+    <p>Daily Rental Rate: {{movie.dailyRentalRate}}</p>
+  </div>
+  <div class="col-sm-6">
+      <img src="{{ movie.imagePath}}" alt="{{movie.title}}" class="img-responsive">
+    </div>
+</div>
+
+<p>
+  film-detail works!
+</p>
+<p>{{movie.title}}</p>

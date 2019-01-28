@@ -1,0 +1,16 @@
+.aligner {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .aligner-item {
+    
+    padding: 20px 20px;
+    transition: box-shadow 1s;
+
+  }
+  .aligner-item:hover{
+    box-shadow: 5px 10px 18px #888888;
+  }
