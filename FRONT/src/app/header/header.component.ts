@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../shared/user-data.service';
 import { Router } from '@angular/router';
+import { UsernameService } from '../shared/username.service';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,19 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  username: string = ''
+
   constructor(private auth: UserDataService,
-    private router: Router) { }
+    private router: Router,
+    private usernameService: UsernameService) { }
 
 
   ngOnInit() {
+    this.usernameService.userHasName.subscribe(
+      (name: string) => {
+        this.username= name;
+      }
+    );
   }
   isAuthenticated(){
     return this.auth.isAuthenticated();

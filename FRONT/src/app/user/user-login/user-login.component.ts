@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserDataService } from 'src/app/shared/user-data.service';
 import { Router } from '@angular/router';
+import { UsernameService } from 'src/app/shared/username.service';
 
 @Component({
   selector: 'app-user-login',
@@ -15,7 +16,8 @@ export class UserLoginComponent implements OnInit {
   errorMsg: string;
 
   constructor(private auth: UserDataService,
-    private router: Router) { }
+    private router: Router,
+    private usernameService: UsernameService) { }
 
   ngOnInit() {
     this.signInForm = new FormGroup({
@@ -33,12 +35,12 @@ export class UserLoginComponent implements OnInit {
       this.auth.logIn(this.loginUser)
       .subscribe(
         (tk: Object) => {
-          this.auth.setToken(tk['token'],tk['isAdmin']);
+          this.auth.setToken(tk['token'],tk['isAdmin'],tk['username']);
+          this.usernameService.userHasName.next(tk['username']);
           this.router.navigate(['']);
         },
         (error) =>  this.errorMsg = error
       );
-
-
+      
   }
 }

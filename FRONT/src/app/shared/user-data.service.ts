@@ -10,22 +10,28 @@ export class UserDataService {
     token: string = null;
     admin: boolean = false;
     errorMsg: string;
+    username: string;
 
     constructor(private httpClient: HttpClient) { }
     isAdmin(){
-        return this.isAdmin;
+        return this.admin;
     }
     isAuthenticated() {
         return this.token != null;
     }
+    getUsername(){
+        return this.username;
+    }
 
-    setToken(newToken: string, isAdmin: boolean) {
+    setToken(newToken: string, isAdmin: boolean, username: string) {
         this.token = newToken;
-        this.admin = isAdmin
+        this.admin = isAdmin;  
+        this.username = username;  
     }
     resetToken() {
         this.token = null;
         this.admin = false;
+        this.username = null;
     }
 
     //GetGenres - not finished method

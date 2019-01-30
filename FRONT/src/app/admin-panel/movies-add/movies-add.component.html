@@ -1,0 +1,34 @@
+<div class="row ">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h3>Add Movie</h3>
+      <form [formGroup]="movieAddForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Movie Title:</label>
+          <input type="text" id="title" class="form-control" id="title" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" id="description" class="form-control" id="description" formControlName="description">
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" id="year" class="form-control" id="year" formControlName="year">
+        </div>
+        <div class="form-group">
+            <label for="imagePath">Image path:</label>
+            <input type="text" id="imagePath" class="form-control" id="imagePath" formControlName="imagePath">
+        </div>
+        <div class="form-group">
+            <label for="numberInStock">Number in stock:</label>
+            <input type="number" id="numberInStock" class="form-control" id="numberInStock" formControlName="numberInStock">
+        </div>
+        <div class="form-group">
+            <label for="dailyRentalRate">Daily rental rate:</label>
+            <input type="number" id="dailyRentalRate" class="form-control" id="dailyRentalRate" formControlName="dailyRentalRate">
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-success" style="width: 100%;" *ngIf="movieAddForm.valid">Add Movie!</button>
+      </form>
+      <br>
+    </div>
+  </div>

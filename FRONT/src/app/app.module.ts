@@ -12,10 +12,15 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserSignupComponent } from './user/user-signup/user-signup.component';
 import { FilmItemComponent } from './film-list/film-item/film-item.component';
 import { FilmDetailComponent } from './film-detail/film-detail.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 //services
 import { FilmServices } from './shared/film.services';
 import { UserDataService } from './shared/user-data.service';
+import { UsernameService } from './shared/username.service';
+import { MoviesControlComponent } from './admin-panel/movies-control/movies-control.component';
+import { GenresControlComponent } from './admin-panel/genres-control/genres-control.component';
+import { MoviesAddComponent } from './admin-panel/movies-add/movies-add.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,11 @@ import { UserDataService } from './shared/user-data.service';
     UserLoginComponent,
     UserSignupComponent,
     FilmItemComponent,
-    FilmDetailComponent
+    FilmDetailComponent,
+    AdminPanelComponent,
+    MoviesControlComponent,
+    GenresControlComponent,
+    MoviesAddComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,7 @@ import { UserDataService } from './shared/user-data.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [FilmServices,UserDataService],
+  providers: [FilmServices,UserDataService, UsernameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

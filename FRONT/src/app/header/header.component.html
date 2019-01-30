@@ -8,11 +8,12 @@
                 <ul class="nav navbar-nav">
                     <li routerLinkActive="active" ><a >Browse Movies</a></li>
                     <li routerLinkActive="active"><a >Your Collection</a></li>
-                    <li routerLinkActive="active" *ngIf="isAdmin()"><a >Admin Panel</a></li>
+                    <li routerLinkActive="active" *ngIf="isAdmin()" routerLink="/admin"><a class="cursor">Admin Panel</a></li>
                 </ul> 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a style="cursor:pointer;"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                    <li><a style="cursor:pointer;" (click)="onLogOut()"><span class="glyphicon glyphicon-log-out"></span> Log out!</a></li>
+                    <p class="navbar-text">Welcome <strong>{{ username }}</strong></p>
+                    <li><a class="cursor"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                    <li><a (click)="onLogOut()" class="cursor"><span class="glyphicon glyphicon-log-out"></span> Log out!</a></li>
               </ul>
           </ng-template>
           <ng-template [ngIf]="!isAuthenticated()">
@@ -20,8 +21,8 @@
                     <li routerLinkActive="active" ><a >Browse Movies</a></li>
                 </ul> 
                 <ul class="nav navbar-nav navbar-right">
-                        <li routerLink="/login"><a style="cursor:pointer;"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-                        <li routerLink="/signup"><a style="cursor:pointer;"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                        <li routerLinkActive="active" routerLink="/login"><a class="cursor"><span class="glyphicon glyphicon-log-in "></span> Log In</a></li>
+                        <li routerLinkActive="active" routerLink="/signup"><a class="cursor"><span class="glyphicon glyphicon-user "></span> Register</a></li>
               </ul>
           </ng-template>
 

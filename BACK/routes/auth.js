@@ -8,7 +8,8 @@ const router = express.Router();
 
 let newToken = new Object({
   'token': '',
-  'isAdmin': false
+  'isAdmin': false,
+  'username': ''
 });
 
 //  POST METHOD - USER LOGIN
@@ -25,7 +26,8 @@ router.post('/', async (req, res) => {
     const token = user.generateAuthToken();
     newToken = {
       token: token,
-      isAdmin: user.isAdmin
+      isAdmin: user.isAdmin,
+      username: user.name
     };
     res.send(newToken);
 
