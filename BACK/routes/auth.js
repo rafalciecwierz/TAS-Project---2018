@@ -6,8 +6,12 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
+let newToken = new Object({
+  'token': '',
+  'isAdmin': false
+});
 
-//  GET METHOD
+//  POST METHOD - USER LOGIN
 router.post('/', async (req, res) => {
     const { error } = validate(req.body); 
     if (error) return res.status(400).send(error.details[0].message);
@@ -19,7 +23,12 @@ router.post('/', async (req, res) => {
     if(!validPassword) return res.status(400).send('Invalid email or password');
 
     const token = user.generateAuthToken();
-    res.send(token);
+    newToken = {
+      token: token,
+      isAdmin: user.isAdmin
+    };
+    res.send(newToken);
+
 });
 
 function validate(req) {

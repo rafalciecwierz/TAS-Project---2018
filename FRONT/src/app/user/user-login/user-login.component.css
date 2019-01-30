@@ -1,16 +1,21 @@
 .aligner {
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .aligner-item {
-    
-    padding: 20px 20px;
-    transition: box-shadow 1s;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  }
-  .aligner-item:hover{
-    box-shadow: 5px 10px 18px #888888;
-  }
+.aligner-item {
+  
+  padding: 20px 20px;
+  transition: box-shadow 1s, background-color 1s;
+
+}
+.aligner-item:hover{
+  box-shadow: 5px 10px 18px #888888;
+  background-color: rgb(156, 187, 185);
+}
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}

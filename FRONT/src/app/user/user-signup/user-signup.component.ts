@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { UserDataService } from 'src/app/shared/user-data.service';
 import { User } from 'src/app/shared/user.model';
 import { Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+
+
 
 @Component({
   selector: 'app-user-signup',
   templateUrl: './user-signup.component.html',
   styleUrls: ['./user-signup.component.css']
 })
-export class UserSignupComponent implements OnInit {
+export class UserSignupComponent implements OnInit, OnDestroy {
 
-  body = new User('Tomek','tomek@gmail.com','password1');
   signUpForm: FormGroup;
+  errorMsg: string;
 
   constructor(private http: UserDataService,
     private router: Router) { }
@@ -25,10 +26,11 @@ export class UserSignupComponent implements OnInit {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(8)])
     });
-
   }
 
- 
+  ngOnDestroy(){
+    this.http.resetErrorMsg();
+  }
 
   onSubmit(){
     this.http.signUp(this.signUpForm.value)
@@ -36,18 +38,13 @@ export class UserSignupComponent implements OnInit {
       (wynik: User) => {
         console.log(wynik);
         this.router.navigate(['/']);
+      },
+      (error) => {
+        this.errorMsg = error;
       }
     );
-  }
+  };
 
-  onSignUp(){
-    this.http.signUp(this.body)
-    .subscribe(
-      (wynik: User) => {
-        console.log(wynik);
-      }
-    );
-  }
 
 
 }
