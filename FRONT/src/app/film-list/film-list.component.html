@@ -1,12 +1,11 @@
 <div class="row">
-  <div class="col-sm-12" style="background-color:darkgray">
-      <h1 class="text-center">Latest Added Movies</h1>
-  </div>
+    <div class="col-sm-12" style="background-color:darkgray">
+        <h1 class="text-center">Latest Added Movies</h1>
+    </div>
 </div>
 <hr>
-<div class="row">
-    <app-film-item
-    *ngFor="let movieEl of movies; let i = index"
-    [movie]="movieEl"
-    [index]="i"></app-film-item>
+<div class="container">
+    <div class="row flex">
+        <app-film-item *ngFor="let movieEl of movies; let i = index" [movie]="movieEl" [index]="i"></app-film-item>
+    </div>
 </div>

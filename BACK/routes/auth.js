@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
+//Token for client
 let newToken = new Object({
   'token': '',
   'isAdmin': false,
@@ -33,6 +34,7 @@ router.post('/', async (req, res) => {
 
 });
 
+//Validation
 function validate(req) {
     const schema = {
       email: Joi.string().min(5).max(255).required().email(),

@@ -15,6 +15,14 @@ export class FilmListComponent implements OnInit {
 
   ngOnInit() {
     this.movies = this.filmService.getMovies();
+
+    this.filmService.getMoviesData()
+    .subscribe(
+      (newMovies: Movie[]) => {
+        this.filmService.setMovies(newMovies);
+        this.movies = newMovies;
+      }
+    );
   }
 
 }

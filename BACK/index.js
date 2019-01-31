@@ -13,6 +13,7 @@ const auth = require('./routes/auth');
 const express = require('express');
 const app = express();
 
+//Checking if jwtPrivateKey is set
 if(!config.get('jwtPrivateKey')){
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
     process.exit(1);
@@ -23,7 +24,7 @@ mongoose.connect('mongodb://localhost/TAS')
     .then( () => console.log('Connected to TAS Database...'))
     .catch(err => console.error('Could not connect to TAS MongoDB...'));
 
-
+// routes handler
 app.use(express.json());
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
@@ -32,6 +33,6 @@ app.use('/api/rentals', rentals);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 
-
+//starting the app! 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Welcom in our server. Listening on port ${port}...`));

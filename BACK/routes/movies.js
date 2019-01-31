@@ -4,11 +4,13 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
+// Get all movies (with limit) method
 router.get('/', async (req, res) => {
-  const movies = await Movie.find().sort('name');
+  const movies = await Movie.find().sort('-timestamp').limit(10);
   res.send(movies);
 });
 
+// Post new movie
 router.post('/', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
@@ -18,6 +20,9 @@ router.post('/', async (req, res) => {
 
   const movie = new Movie({ 
     title: req.body.title,
+    description: req.body.description,
+    year: req.body.year,
+    imagePath: req.body.imagePath,
     genre: {
       _id: genre._id,
       name: genre.name
@@ -30,6 +35,7 @@ router.post('/', async (req, res) => {
   res.send(movie);
 });
 
+// Update movie by id
 router.put('/:id', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
@@ -37,7 +43,8 @@ router.put('/:id', async (req, res) => {
   const genre = await Genre.findById(req.body.genreId);
   if (!genre) return res.status(400).send('Invalid genre.');
 
-  const movie = await Movie.findByIdAndUpdate(req.params.id,
+  const movie = await Movie
+  .findByIdAndUpdate(req.params.id,
     { 
       title: req.body.title,
       genre: {
@@ -53,6 +60,7 @@ router.put('/:id', async (req, res) => {
   res.send(movie);
 });
 
+// Delete movie by id
 router.delete('/:id', async (req, res) => {
   const movie = await Movie.findByIdAndRemove(req.params.id);
 
@@ -61,6 +69,7 @@ router.delete('/:id', async (req, res) => {
   res.send(movie);
 });
 
+// Get movie by id
 router.get('/:id', async (req, res) => {
   const movie = await Movie.findById(req.params.id);
 

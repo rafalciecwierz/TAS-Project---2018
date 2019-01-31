@@ -21,9 +21,15 @@ export class FilmDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.movie = this.filmService.getMovie(this.id);
+        if(!this.filmService.getMovie(this.id)) {
+          this.router.navigate(['../']);
+        }
+        else{
+          this.movie = this.filmService.getMovie(this.id);
+        }
       }
     );
+
   }
 
 }

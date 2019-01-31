@@ -3,6 +3,7 @@
     <button type="button" class="btn btn-primary">Add this movie to the cart</button>
     <hr>
     <h3>{{movie.title}} - {{movie.year}}</h3>
+    <p>{{movie.genre.name}}</p>
     <hr>
     <h4> {{movie.description}}</h4>
     <hr>
@@ -13,8 +14,3 @@
       <img src="{{ movie.imagePath}}" alt="{{movie.title}}" class="img-responsive">
     </div>
 </div>
-
-<p>
-  film-detail works!
-</p>
-<p>{{movie.title}}</p>

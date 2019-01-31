@@ -1,3 +1,27 @@
-<p>
-  genres-control works!
-</p>
+<div class="row ">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h2 class="text-center">Here you can control your movie genres</h2>
+        <hr>
+        <form [formGroup]="genreAddForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Add Genre:</label>
+                <input type="text" id="name" class="form-control" id="name" formControlName="name">
+                <span class="help-block" *ngIf="!genreAddForm.get('name').valid && genreAddForm.get('name').touched">
+                    Please enter a valid genre (min 3 characters long)!</span>
+            </div>
+            <button type="submit" class="btn btn-success" style="width: 100%;" *ngIf="genreAddForm.valid">Add genre!</button>
+        </form>
+        <div class="alert alert-success" *ngIf="genreMsg">
+                <strong>Success!</strong> You added {{ genreMsg }} genre!
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMsg">
+                <strong>Warning!</strong> {{ errorMsg}}
+        </div>
+        <hr>
+        <h4 class="text-center">List of genres:</h4>
+        <div class="list-group">
+            <app-genres-item *ngFor="let genreEl of genres; let i = index" [genre]="genreEl" [index]="i">
+            </app-genres-item>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,10 @@ export class UserDataService {
         return this.username;
     }
 
+    getToken(){
+        return this.token;
+    }
+
     setToken(newToken: string, isAdmin: boolean, username: string) {
         this.token = newToken;
         this.admin = isAdmin;  
@@ -34,15 +38,7 @@ export class UserDataService {
         this.username = null;
     }
 
-    //GetGenres - not finished method
-    getGenres() {
-        this.httpClient.get<string>('http://127.0.0.1:3000/api/genres')
-            .subscribe(
-                (response: string) => {
-                    console.log(response);
-                }
-            );
-    }
+
 
     //SingUpMethod
     signUp(body) {
@@ -68,7 +64,7 @@ export class UserDataService {
     }
 
     //Method for error handling
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
            // console.error('An error occurred:', error.error.message);

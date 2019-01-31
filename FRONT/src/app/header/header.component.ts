@@ -10,7 +10,8 @@ import { UsernameService } from '../shared/username.service';
 })
 export class HeaderComponent implements OnInit {
 
-  username: string = ''
+  username: string = '';
+  navbarOpen: boolean = false;
 
   constructor(private auth: UserDataService,
     private router: Router,
@@ -23,6 +24,9 @@ export class HeaderComponent implements OnInit {
         this.username= name;
       }
     );
+  }
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
   isAuthenticated(){
     return this.auth.isAuthenticated();

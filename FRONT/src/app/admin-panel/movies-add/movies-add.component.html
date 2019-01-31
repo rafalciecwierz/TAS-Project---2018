@@ -5,30 +5,53 @@
         <div class="form-group">
           <label for="title">Movie Title:</label>
           <input type="text" id="title" class="form-control" id="title" formControlName="title">
+          <span class="help-block" *ngIf="!movieAddForm.get('title').valid && movieAddForm.get('title').touched">
+                Please enter a valid title (min 1 characters long)!</span>
         </div>
         <div class="form-group">
           <label for="description">Description:</label>
-          <input type="text" id="description" class="form-control" id="description" formControlName="description">
+          <textarea rows="3" type="text" id="description" class="form-control" id="description" formControlName="description"></textarea>
         </div>
         <div class="form-group">
             <label for="year">Year:</label>
             <input type="number" id="year" class="form-control" id="year" formControlName="year">
         </div>
         <div class="form-group">
-            <label for="imagePath">Image path:</label>
-            <input type="text" id="imagePath" class="form-control" id="imagePath" formControlName="imagePath">
+            <label for="genreId">Genre:</label>
+            <select class="form-control" formControlName="genreId" id="genreId">
+                <option value="{{genre._id}}" [ngValue]="genre" *ngFor="let genre of genres">{{genre.name}}</option>
+            </select>
         </div>
+        <div class="form-group">
+            <label for="imagePath">Image path:</label>
+            <input #imagePath type="text" id="imagePath" class="form-control" id="imagePath" formControlName="imagePath">
+        </div>
+        <div class="row">
+                <div class="col-xs-12">
+                  <img [src]="imagePath.value" class="img-responsive" style="max-height: 100px;">
+                </div>
+              </div>
         <div class="form-group">
             <label for="numberInStock">Number in stock:</label>
             <input type="number" id="numberInStock" class="form-control" id="numberInStock" formControlName="numberInStock">
+            <span class="help-block" *ngIf="!movieAddForm.get('numberInStock').valid && movieAddForm.get('numberInStock').touched">
+                    Please enter a valid stock number (0 - 999)!</span>
         </div>
         <div class="form-group">
             <label for="dailyRentalRate">Daily rental rate:</label>
             <input type="number" id="dailyRentalRate" class="form-control" id="dailyRentalRate" formControlName="dailyRentalRate">
+            <span class="help-block" *ngIf="!movieAddForm.get('dailyRentalRate').valid && movieAddForm.get('dailyRentalRate').touched">
+                    Please enter a valid stock rental rate (1-100)!</span>
         </div>
         <hr>
         <button type="submit" class="btn btn-success" style="width: 100%;" *ngIf="movieAddForm.valid">Add Movie!</button>
       </form>
       <br>
+      <div class="alert alert-success" *ngIf="movieMsg">
+            <strong>Success!</strong> {{ movieMsg }} was Added!
+      </div>
+      <div class="alert alert-danger" *ngIf="errorMsg">
+            <strong>Warning!</strong> {{ errorMsg }}!
+      </div>
     </div>
   </div>

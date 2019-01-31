@@ -4,15 +4,17 @@ const {Customer} = require('../models/customer');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const Fawn = require('fawn');
+const Fawn = require('fawn'); //Library for handling transactions in mongodb
 
 Fawn.init(mongoose);
 
+// Get all rentals
 router.get('/', async (req, res) => {
   const rentals = await Rental.find().sort('-dateOut');
   res.send(rentals);
 });
 
+// Post new rental
 router.post('/', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
@@ -49,10 +51,9 @@ router.post('/', async (req, res) => {
   catch(ex){
       res.status(500).send('Something Failed.');
   }
-
-
 });
 
+// Get one rental by ID
 router.get('/:id', async (req, res) => {
   const rental = await Rental.findById(req.params.id);
 
