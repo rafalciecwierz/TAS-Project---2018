@@ -18,7 +18,6 @@ export class GenresControlComponent implements OnInit, OnDestroy {
   constructor(private filmService: FilmServices) { }
 
   ngOnInit() {
-
     this.genreAddForm = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.maxLength(255), Validators.minLength(1), this.noWhitespaceValidator]),
     });
